@@ -1,53 +1,58 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const menuContainer = document.getElementById("menu-container");
+document.addEventListener('DOMContentLoaded', async () => {
+  const menuContenedor = document.getElementById('menu');
 
-  fetch("https://menu-japones-api.onrender.com/api/menu")
-    .then(res => res.json())
-    .then(data => {
-      if (!data || !data.length) {
-        menuContainer.innerHTML = `
-          <p class="text-center col-span-full text-gray-500">No hay productos disponibles.</p>
-        `;
-        return;
+  try {
+    const response = await fetch('https://menu-japones-api.onrender.com/menu');
+    const data = await response.json();
+
+    if (!data || !data.length) {
+      menuContenedor.innerHTML = '<p class="error">No hay productos disponibles.</p>';
+      return;
+    }
+
+    // Agrupar productos por categoría
+    const categorias = {};
+    data.forEach(producto => {
+      const categoria = producto.categoria || 'Sin categoría';
+      if (!categorias[categoria]) {
+        categorias[categoria] = [];
       }
+      categorias[categoria].push(producto);
+    });
 
-      const categorias = {};
+    // Renderizar cada categoría y sus productos
+    for (const categoria in categorias) {
+      const section = document.createElement('section');
+      section.classList.add('categoria');
 
-      // Agrupar productos por categoría
-      data.forEach(item => {
-        if (!categorias[item.categoria]) {
-          categorias[item.categoria] = [];
-        }
-        categorias[item.categoria].push(item);
+      const titleCard = document.createElement('div');
+      titleCard.classList.add('card-categoria');
+      titleCard.innerHTML = `
+        <h2>${categoria}</h2>
+        <p>Explora nuestras delicias en la categoría <strong>${categoria}</strong></p>
+      `;
+      section.appendChild(titleCard);
+
+      const grid = document.createElement('div');
+      grid.classList.add('productos-grid');
+
+      categorias[categoria].forEach(producto => {
+        const card = document.createElement('div');
+        card.classList.add('producto-card');
+        card.innerHTML = `
+          <h3>${producto.nombre}</h3>
+          <p class="descripcion">${producto.descripcion || ''}</p>
+          <p class="precio">Q${producto.precio.toFixed(2)}</p>
+        `;
+        grid.appendChild(card);
       });
 
-      // Recorrer las categorías y construir HTML para cada una
-      for (let categoria in categorias) {
-        const productosHTML = categorias[categoria].map(producto => `
-          <div class="bg-white border border-pink-200 p-4 rounded-lg shadow-md hover:shadow-lg transition">
-            <h3 class="text-lg font-bold text-green-900">${producto.nombre}</h3>
-            <p class="text-sm text-gray-600 mt-1">${producto.descripcion || "Sin descripción"}</p>
-            <p class="text-pink-600 font-semibold mt-2">Q${producto.precio}</p>
-          </div>
-        `).join("");
+      section.appendChild(grid);
+      menuContenedor.appendChild(section);
+    }
 
-        const categoriaSection = document.createElement("section");
-        categoriaSection.innerHTML = `
-          <div class="col-span-full">
-            <h2 id="${categoria.toLowerCase()}" class="text-2xl font-bold text-green-800 border-b border-green-300 pb-1 mb-4 mt-10">${categoria}</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              ${productosHTML}
-            </div>
-          </div>
-        `;
-
-        menuContainer.appendChild(categoriaSection);
-      }
-    })
-    .catch(error => {
-      console.error("Error al cargar productos:", error);
-      menuContainer.innerHTML = `
-        <p class="text-center col-span-full text-red-500">Error al cargar el menú. Intenta nuevamente más tarde.</p>
-      `;
-    });
+  } catch (error) {
+    console.error('Error al cargar el menú:', error);
+    menuContenedor.innerHTML = '<p class="error">Hubo un problema al cargar el menú.</p>';
+  }
 });
