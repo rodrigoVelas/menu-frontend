@@ -14,18 +14,16 @@
       scroll-behavior: smooth;
     }
     body {
-      background-image: url('https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
       background-color: #fef9f4;
+      background-repeat: repeat;
+      font-family: 'Noto Sans JP', sans-serif;
     }
   </style>
 </head>
-<body class="font-sans bg-opacity-90 backdrop-blur-sm" style="font-family: 'Noto Sans JP', sans-serif;">
+<body>
   <!-- Navbar -->
-  <nav class="bg-white shadow sticky top-0 z-50 bg-opacity-90">
+  <nav class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center gap-2 text-green-900 font-bold text-xl">
         🍙 <span>Menú Japonés</span>
@@ -40,20 +38,24 @@
     </div>
   </nav>
 
-  <!-- Header con ilustración japonesa -->
-  <header class="relative bg-pink-200 bg-opacity-80 py-12 text-center shadow-md overflow-hidden">
-    <h1 class="text-4xl font-bold z-10 relative">Bienvenido a <span class="text-green-900">Fuwa Café</span></h1>
-    <p class="text-gray-700 mt-1 z-10 relative">Descubre nuestro menú con sabores japoneses artesanales</p>
-    <img src="https://cdn.pixabay.com/photo/2020/07/20/07/58/bamboo-5422173_960_720.png" alt="Bambú decorativo" class="absolute bottom-0 right-0 w-40 opacity-30" />
+  <!-- Header Card con fondo -->
+  <header class="relative max-w-5xl mx-auto mt-10 rounded-xl overflow-hidden shadow-lg">
+    <div class="absolute inset-0">
+      <img src="https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg" alt="Decoración japonesa" class="w-full h-full object-cover brightness-75 blur-sm">
+    </div>
+    <div class="relative z-10 text-white text-center px-6 py-16">
+      <h1 class="text-4xl font-bold mb-2">Bienvenido a <span class="text-yellow-300">Fuwa Café</span></h1>
+      <p class="text-md">Descubre nuestro menú con sabores japoneses artesanales</p>
+    </div>
   </header>
 
   <!-- Contenido -->
-  <main class="max-w-7xl mx-auto px-4 py-10">
+  <main class="max-w-6xl mx-auto px-4 py-10">
     <section id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-pink-200 text-center text-gray-700 text-sm py-6 bg-opacity-80">
+  <footer class="bg-pink-200 text-center text-gray-700 text-sm py-6">
     &copy; 2025 Fuwa Café. Diseño inspirado en la cultura japonesa.
   </footer>
 
