@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menú Japonés | Fuwa Café</title>
-  
+
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="estilos.css">
@@ -37,12 +37,14 @@
     </div>
   </nav>
 
-  <!-- Header con imagen -->
-  <header class="relative overflow-hidden h-56 md:h-72 lg:h-96">
-    <img src="https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg" alt="Encabezado japonés" class="w-full h-full object-cover opacity-80">
-    <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col items-center justify-center text-center text-white">
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">Bienvenido a Fuwa Café</h1>
-      <p class="text-md md:text-lg">Descubre nuestro menú con sabores japoneses artesanales</p>
+  <!-- Header con imagen tipo banner -->
+  <header class="relative">
+    <div class="w-full h-52 md:h-64 lg:h-72 overflow-hidden">
+      <img src="https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg" alt="Banner japonés" class="w-full h-full object-cover">
+    </div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black bg-opacity-40">
+      <h1 class="text-3xl md:text-4xl font-bold drop-shadow">Bienvenido a Fuwa Café</h1>
+      <p class="text-md md:text-lg drop-shadow">Sabores japoneses artesanales en cada platillo</p>
     </div>
   </header>
 
@@ -57,48 +59,6 @@
   </footer>
 
   <!-- Script -->
-  <script>
-    const menuContainer = document.getElementById('menu-container');
-
-    fetch('https://menu-japones-api.onrender.com/api/menu')
-      .then(res => res.json())
-      .then(data => {
-        if (!data.length) {
-          menuContainer.innerHTML = '<p class="text-center col-span-full text-gray-500">No hay productos disponibles.</p>';
-          return;
-        }
-
-        const categorias = {};
-        data.forEach(item => {
-          if (!categorias[item.categoria]) categorias[item.categoria] = [];
-          categorias[item.categoria].push(item);
-        });
-
-        for (let categoria in categorias) {
-          const productos = categorias[categoria].map(p => `
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition border border-pink-100">
-              <h3 class="font-bold text-lg text-green-900">${p.nombre}</h3>
-              <p class="text-sm text-gray-700">${p.descripcion || ''}</p>
-              <p class="mt-1 text-pink-700 font-semibold">Q${p.precio}</p>
-            </div>
-          `).join('');
-
-          const section = document.createElement('section');
-          section.innerHTML = `
-            <div class="col-span-full">
-              <h2 id="${categoria.toLowerCase()}" class="text-2xl font-bold text-green-800 border-b border-green-300 pb-1 mb-3 mt-8">${categoria}</h2>
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                ${productos}
-              </div>
-            </div>
-          `;
-          menuContainer.appendChild(section);
-        }
-      })
-      .catch(err => {
-        menuContainer.innerHTML = '<p class="text-center col-span-full text-red-500">Error al cargar los productos.</p>';
-        console.error(err);
-      });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
