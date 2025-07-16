@@ -1,68 +1,63 @@
-/* estilos.css */
+const apiUrl = "https://menu-japones-api.onrender.com/api/menu";
+const container = document.getElementById("menu-container");
 
-/* Fondo tipo bambú con textura sutil */
-body {
-  background: url('https://www.transparenttextures.com/patterns/bamboo.png');
-  background-color: #fef9f4;
-  background-attachment: fixed;
-  background-repeat: repeat;
-  font-family: 'Noto Sans JP', sans-serif;
-  color: #333;
+function createSection(title, items, id) {
+  return `
+    <section id="${id}" class="card">
+      <h2 class="text-2xl font-bold text-green-900 mb-4">${title}</h2>
+      <ul class="space-y-3 text-sm text-gray-800">
+        ${items.map(item => {
+          const nombre = item.nombre || "Producto";
+          const precio = typeof item.precio === "string"
+            ? ` - ${item.precio}`
+            : typeof item.precio === "number"
+              ? ` - Q${item.precio}`
+              : "";
+
+          const variantes = item.variantes
+            ? `<ul class="pl-5 text-xs text-gray-600 list-disc">${item.variantes.map(v => `<li>${v}</li>`).join("")}</ul>`
+            : "";
+
+          const sabores = item.sabores
+            ? `<ul class="pl-5 text-xs text-gray-600 list-disc">${item.sabores.map(s => `<li>${s}</li>`).join("")}</ul>`
+            : "";
+
+          const preciosObject = typeof item.precio === "object" && !Array.isArray(item.precio)
+            ? `<ul class="pl-5 text-xs text-gray-600 list-disc">${Object.entries(item.precio).map(
+                ([key, val]) => `<li>${key}: Q${val}</li>`
+              ).join("")}</ul>`
+            : "";
+
+          return `
+            <li>
+              <strong>${nombre}</strong>${precio}
+              ${variantes}
+              ${sabores}
+              ${preciosObject}
+            </li>
+          `;
+        }).join("")}
+      </ul>
+    </section>
+  `;
 }
 
-/* Tarjeta para cada categoría */
-.card {
-  background-color: rgba(255, 255, 255, 0.96);
-  border-radius: 1rem;
-  border: 1px solid #d6ccc2;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-}
-
-/* Títulos de secciones */
-h2 {
-  color: #2f3e46;
-  border-left: 6px solid #a3c585;
-  padding-left: 0.5rem;
-}
-
-/* Listas */
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-ul li::before {
-  content: "🍵 ";
-  margin-right: 4px;
-  color: #6b705c;
-}
-
-/* Encabezado */
-header {
-  background-color: #f5e5d8;
-  border-bottom: 2px solid #c0b283;
-}
-
-/* Pie de página */
-footer {
-  background-color: #f5e5d8;
-  border-top: 2px solid #c0b283;
-}
-
-/* Responsive ajustes extra */
-@media (max-width: 640px) {
-  .card {
-    padding: 1rem;
-  }
-
-  h1 {
-    font-size: 1.75rem;
-  }
-}
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(data => {
+    let html = `
+      ${createSection("Brunch", data.brunch, "brunch")}
+      ${createSection("Postres", data.postres, "postres")}
+      ${createSection("Especiales Japoneses", data.japanese, "especiales")}
+      ${createSection("Bebidas Calientes", data.bebidas.calientes, "calientes")}
+      ${createSection("Bebidas Frías", data.bebidas.frias, "frias")}
+    `;
+    container.innerHTML = html;
+  })
+  .catch(err => {
+    console.error("Error al cargar el menú:", err);
+    container.innerHTML = `
+      <p class="text-red-600 text-center mt-8">
+        🚫 Ocurrió un error al cargar el menú. Verifica la conexión con la API.
+      </p>`;
+  });
