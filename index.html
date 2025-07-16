@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menú Japonés | Fuwa Café</title>
-
+  
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="estilos.css">
@@ -19,9 +19,15 @@
       background-repeat: repeat;
       font-family: 'Noto Sans JP', sans-serif;
     }
+    .hero-card {
+      background-image: url('https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 1rem;
+    }
   </style>
 </head>
-<body>
+<body class="font-sans">
   <!-- Navbar -->
   <nav class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -38,20 +44,17 @@
     </div>
   </nav>
 
-  <!-- Header Card con fondo -->
-  <header class="relative max-w-5xl mx-auto mt-10 rounded-xl overflow-hidden shadow-lg">
-    <div class="absolute inset-0">
-      <img src="https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg" alt="Decoración japonesa" class="w-full h-full object-cover brightness-75 blur-sm">
-    </div>
-    <div class="relative z-10 text-white text-center px-6 py-16">
-      <h1 class="text-4xl font-bold mb-2">Bienvenido a <span class="text-yellow-300">Fuwa Café</span></h1>
-      <p class="text-md">Descubre nuestro menú con sabores japoneses artesanales</p>
+  <!-- Header con imagen estilo card -->
+  <header class="hero-card text-white p-10 my-6 mx-4 lg:mx-auto max-w-5xl shadow-lg relative">
+    <div class="bg-black bg-opacity-50 rounded-lg p-6">
+      <h1 class="text-4xl font-bold">Bienvenido a Fuwa Café</h1>
+      <p class="text-lg mt-2">Descubre nuestro menú con sabores japoneses artesanales</p>
     </div>
   </header>
 
   <!-- Contenido -->
   <main class="max-w-6xl mx-auto px-4 py-10">
-    <section id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+    <section id="menu-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></section>
   </main>
 
   <!-- Footer -->
@@ -60,6 +63,37 @@
   </footer>
 
   <!-- Script -->
-  <script src="app.js"></script>
+  <script>
+    async function cargarMenu() {
+      const container = document.getElementById('menu-container');
+      try {
+        const res = await fetch('https://menu-japones-api.onrender.com/api/menu');
+        const data = await res.json();
+
+        if (data && data.length > 0) {
+          data.forEach(cat => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-lg shadow-md p-5 border';
+            card.innerHTML = `
+              <h2 id="${cat.categoria.toLowerCase()}" class="text-xl font-bold text-green-900 mb-4">${cat.categoria}</h2>
+              <ul class="space-y-2">
+                ${cat.productos.map(p => `
+                  <li>
+                    <div class="font-medium">${p.nombre} <span class="text-sm text-gray-600">- Q${p.precio}</span></div>
+                    ${p.descripcion ? `<div class="text-gray-500 text-sm">${p.descripcion}</div>` : ''}
+                  </li>`).join('')}
+              </ul>
+            `;
+            container.appendChild(card);
+          });
+        } else {
+          container.innerHTML = '<p class="text-center text-gray-500">No hay productos disponibles.</p>';
+        }
+      } catch (error) {
+        container.innerHTML = '<p class="text-center text-red-500">Error al cargar el menú.</p>';
+      }
+    }
+    cargarMenu();
+  </script>
 </body>
 </html>
