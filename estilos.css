@@ -1,0 +1,10 @@
+/* estilos.css */
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.card {
+  @apply bg-white rounded-xl shadow p-4 border border-gray-200;
+}
+h2 {
+  @apply text-xl font-semibold mb-2;
+}
