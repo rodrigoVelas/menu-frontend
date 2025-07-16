@@ -1,63 +1,119 @@
-const apiUrl = "https://menu-japones-api.onrender.com/api/menu";
-const container = document.getElementById("menu-container");
+/* estilos.css */
 
-function createSection(title, items, id) {
-  return `
-    <section id="${id}" class="card">
-      <h2 class="text-2xl font-bold text-green-900 mb-4">${title}</h2>
-      <ul class="space-y-3 text-sm text-gray-800">
-        ${items.map(item => {
-          const nombre = item.nombre || "Producto";
-          const precio = typeof item.precio === "string"
-            ? ` - ${item.precio}`
-            : typeof item.precio === "number"
-              ? ` - Q${item.precio}`
-              : "";
-
-          const variantes = item.variantes
-            ? `<ul class="pl-5 text-xs text-gray-600 list-disc">${item.variantes.map(v => `<li>${v}</li>`).join("")}</ul>`
-            : "";
-
-          const sabores = item.sabores
-            ? `<ul class="pl-5 text-xs text-gray-600 list-disc">${item.sabores.map(s => `<li>${s}</li>`).join("")}</ul>`
-            : "";
-
-          const preciosObject = typeof item.precio === "object" && !Array.isArray(item.precio)
-            ? `<ul class="pl-5 text-xs text-gray-600 list-disc">${Object.entries(item.precio).map(
-                ([key, val]) => `<li>${key}: Q${val}</li>`
-              ).join("")}</ul>`
-            : "";
-
-          return `
-            <li>
-              <strong>${nombre}</strong>${precio}
-              ${variantes}
-              ${sabores}
-              ${preciosObject}
-            </li>
-          `;
-        }).join("")}
-      </ul>
-    </section>
-  `;
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
+  background-color: #fef9f4;
+  background-repeat: repeat;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-fetch(apiUrl)
-  .then(res => res.json())
-  .then(data => {
-    let html = `
-      ${createSection("Brunch", data.brunch, "brunch")}
-      ${createSection("Postres", data.postres, "postres")}
-      ${createSection("Especiales Japoneses", data.japanese, "especiales")}
-      ${createSection("Bebidas Calientes", data.bebidas.calientes, "calientes")}
-      ${createSection("Bebidas Frías", data.bebidas.frias, "frias")}
-    `;
-    container.innerHTML = html;
-  })
-  .catch(err => {
-    console.error("Error al cargar el menú:", err);
-    container.innerHTML = `
-      <p class="text-red-600 text-center mt-8">
-        🚫 Ocurrió un error al cargar el menú. Verifica la conexión con la API.
-      </p>`;
-  });
+nav {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+nav a {
+  color: #1a202c;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #2f855a;
+}
+
+header.hero {
+  position: relative;
+  background-color: #fde9ef;
+  padding: 3rem 1rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+header.hero h1 {
+  font-size: 2.5rem;
+  color: #2f3e46;
+  z-index: 1;
+  position: relative;
+}
+
+header.hero p {
+  margin-top: 0.5rem;
+  color: #555;
+  z-index: 1;
+  position: relative;
+}
+
+header.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.menu-section {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease;
+}
+
+.menu-section:hover {
+  transform: translateY(-3px);
+}
+
+.menu-section h2 {
+  font-size: 1.5rem;
+  color: #2f855a;
+  margin-bottom: 1rem;
+  border-left: 4px solid #2f855a;
+  padding-left: 0.5rem;
+}
+
+.menu-item {
+  margin-bottom: 1rem;
+}
+
+.menu-item h3 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #1a202c;
+}
+
+.menu-item ul {
+  list-style-type: circle;
+  padding-left: 1.5rem;
+  margin-top: 0.25rem;
+  color: #4a5568;
+  font-size: 0.95rem;
+}
+
+footer {
+  background-color: #fde9ef;
+  text-align: center;
+  color: #555;
+  font-size: 0.875rem;
+  padding: 1.5rem 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+}
