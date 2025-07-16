@@ -13,14 +13,30 @@
     html {
       scroll-behavior: smooth;
     }
+    body {
+      background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
+      background-color: #fef9f4;
+      background-repeat: repeat;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
-<body class="bg-pink-50 font-sans" style="font-family: 'Noto Sans JP', sans-serif;">
+<body class="font-sans" style="font-family: 'Noto Sans JP', sans-serif;">
   <!-- Navbar -->
   <nav class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center gap-2 text-green-900 font-bold text-xl">
-        🍡 <span>Menú Japonés</span>
+         <span>Menú Japonés</span>
       </div>
       <div class="space-x-4 text-sm">
         <a href="#brunch" class="hover:text-green-700 font-medium">Brunch</a>
@@ -32,15 +48,16 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="bg-pink-200 py-6 text-center shadow-md">
-    <h1 class="text-4xl font-bold">Bienvenido a <span class="text-green-900">Fuwa Café</span></h1>
-    <p class="text-gray-700 mt-1">Descubre nuestro menú con sabores japoneses artesanales</p>
+  <!-- Header con ilustración japonesa -->
+  <header class="relative bg-pink-200 py-12 text-center shadow-md overflow-hidden">
+    <h1 class="text-4xl font-bold z-10 relative">Bienvenido a <span class="text-green-900">Fuwa Café</span></h1>
+    <p class="text-gray-700 mt-1 z-10 relative">Descubre nuestro menú con sabores japoneses artesanales</p>
+    <img src="https://cdn.pixabay.com/photo/2020/07/20/07/58/bamboo-5422173_960_720.png" alt="Bambú decorativo" class="absolute bottom-0 right-0 w-40 opacity-30" />
   </header>
 
   <!-- Contenido -->
   <main class="max-w-7xl mx-auto px-4 py-10">
-    <section id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+    <section id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in"></section>
   </main>
 
   <!-- Footer -->
