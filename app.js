@@ -1,51 +1,53 @@
-function crearSeccionHTML(categoria, items) {
-  const contenedor = document.getElementById("menu-container");
+document.addEventListener("DOMContentLoaded", () => {
+  const menuContainer = document.getElementById("menu-container");
 
-  const seccion = document.createElement("section");
-  seccion.className = "bg-white shadow-md p-6 rounded-lg animate-fadeIn";
-  seccion.id = categoria.toLowerCase().replace(/\s+/g, "");
-
-  const titulo = document.createElement("h2");
-  titulo.className = "text-xl font-bold mb-4 text-green-900 border-b pb-2 border-green-200";
-  titulo.textContent = categoria;
-
-  const lista = document.createElement("ul");
-  lista.className = "space-y-2";
-
-  items.forEach(item => {
-    const li = document.createElement("li");
-
-    if (typeof item === "string") {
-      li.innerHTML = `• ${item}`;
-    } else if (typeof item === "object") {
-      const nombre = Object.keys(item)[0];
-      const contenido = item[nombre];
-
-      const textoPrincipal = document.createElement("div");
-      textoPrincipal.className = "font-semibold text-gray-800";
-
-      if (typeof contenido === "string") {
-        textoPrincipal.innerHTML = ` <strong>${nombre}</strong> - ${contenido}`;
-        li.appendChild(textoPrincipal);
-      } else if (Array.isArray(contenido)) {
-        textoPrincipal.innerHTML = ` <strong>${nombre}</strong>`;
-        li.appendChild(textoPrincipal);
-
-        const sublista = document.createElement("ul");
-        sublista.className = "ml-5 list-disc text-sm text-gray-700";
-        contenido.forEach(subitem => {
-          const subLi = document.createElement("li");
-          subLi.textContent = subitem;
-          sublista.appendChild(subLi);
-        });
-        li.appendChild(sublista);
+  fetch("https://menu-japones-api.onrender.com/api/menu")
+    .then(res => res.json())
+    .then(data => {
+      if (!data || !data.length) {
+        menuContainer.innerHTML = `
+          <p class="text-center col-span-full text-gray-500">No hay productos disponibles.</p>
+        `;
+        return;
       }
-    }
 
-    lista.appendChild(li);
-  });
+      const categorias = {};
 
-  seccion.appendChild(titulo);
-  seccion.appendChild(lista);
-  contenedor.appendChild(seccion);
-}
+      // Agrupar productos por categoría
+      data.forEach(item => {
+        if (!categorias[item.categoria]) {
+          categorias[item.categoria] = [];
+        }
+        categorias[item.categoria].push(item);
+      });
+
+      // Recorrer las categorías y construir HTML para cada una
+      for (let categoria in categorias) {
+        const productosHTML = categorias[categoria].map(producto => `
+          <div class="bg-white border border-pink-200 p-4 rounded-lg shadow-md hover:shadow-lg transition">
+            <h3 class="text-lg font-bold text-green-900">${producto.nombre}</h3>
+            <p class="text-sm text-gray-600 mt-1">${producto.descripcion || "Sin descripción"}</p>
+            <p class="text-pink-600 font-semibold mt-2">Q${producto.precio}</p>
+          </div>
+        `).join("");
+
+        const categoriaSection = document.createElement("section");
+        categoriaSection.innerHTML = `
+          <div class="col-span-full">
+            <h2 id="${categoria.toLowerCase()}" class="text-2xl font-bold text-green-800 border-b border-green-300 pb-1 mb-4 mt-10">${categoria}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              ${productosHTML}
+            </div>
+          </div>
+        `;
+
+        menuContainer.appendChild(categoriaSection);
+      }
+    })
+    .catch(error => {
+      console.error("Error al cargar productos:", error);
+      menuContainer.innerHTML = `
+        <p class="text-center col-span-full text-red-500">Error al cargar el menú. Intenta nuevamente más tarde.</p>
+      `;
+    });
+});
