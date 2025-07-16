@@ -3,62 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menú Japonés | Fuwa Café</title>
-
-  <!-- Tailwind CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      background-image: url('https://www.transparenttextures.com/patterns/rice-paper.png');
-      background-color: #fef9f4;
-      background-repeat: repeat;
-    }
-  </style>
+  <title>Fuwa Café</title>
+  <link rel="stylesheet" href="estilos.css" />
 </head>
-<body class="font-sans" style="font-family: 'Noto Sans JP', sans-serif;">
-  <!-- Navbar -->
-  <nav class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center gap-2 text-green-900 font-bold text-xl">
-        🍙 <span>Menú Japonés</span>
-      </div>
-      <div class="space-x-4 text-sm">
-        <a href="#brunch" class="hover:text-green-700 font-medium">Brunch</a>
-        <a href="#postres" class="hover:text-green-700 font-medium">Postres</a>
-        <a href="#especiales" class="hover:text-green-700 font-medium">Especiales</a>
-        <a href="#calientes" class="hover:text-green-700 font-medium">Calientes</a>
-        <a href="#frias" class="hover:text-green-700 font-medium">Frías</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Header con imagen tipo banner -->
-  <header class="relative">
-    <div class="w-full h-52 md:h-64 lg:h-72 overflow-hidden">
-      <img src="https://images.pexels.com/photos/31664288/pexels-photo-31664288.jpeg" alt="Banner japonés" class="w-full h-full object-cover">
-    </div>
-    <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white bg-black bg-opacity-40">
-      <h1 class="text-3xl md:text-4xl font-bold drop-shadow">Bienvenido a Fuwa Café</h1>
-      <p class="text-md md:text-lg drop-shadow">Sabores japoneses artesanales en cada platillo</p>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay">
+      <h1 class="hero-title">Bienvenido a Fuwa Café</h1>
+      <p class="hero-subtitle">Disfruta lo mejor de Japón en cada bocado</p>
+      
     </div>
   </header>
 
-  <!-- Contenido -->
-  <main class="max-w-7xl mx-auto px-4 py-10">
-    <section id="menu-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+  <!-- Menú dinámico -->
+  <main id="menu" class="menu-contenedor">
+    <!-- Aquí se cargarán las categorías con sus productos -->
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-pink-100 text-center text-gray-700 text-sm py-6">
-    &copy; 2025 Fuwa Café. Diseño inspirado en la cultura japonesa.
+  <footer>
+    <p>© 2025 Fuwa Café. Diseño inspirado en la cultura japonesa.</p>
   </footer>
 
-  <!-- Script -->
   <script src="app.js"></script>
 </body>
 </html>
