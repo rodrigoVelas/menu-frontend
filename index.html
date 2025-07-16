@@ -4,23 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Menú Japonés | Fuwa Café</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css">
+  
+  <!-- Tailwind CSS v3 -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  
+  <!-- Tipografía japonesa -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilo personalizado -->
+  <link rel="stylesheet" href="estilos.css" />
 </head>
-<body class="bg-white text-gray-800 font-sans">
-  <header class="bg-pink-100 py-6 text-center shadow">
-    <h1 class="text-4xl font-bold">🍙 Menú Japonés</h1>
-    <p class="text-sm text-gray-600">Bienvenido a Fuwa Café</p>
+<body class="bg-pink-50 text-gray-800 font-sans" style="font-family: 'Noto Sans JP', sans-serif;">
+  
+  <!-- Encabezado -->
+  <header class="bg-pink-200 py-6 shadow text-center">
+    <h1 class="text-4xl font-bold flex items-center justify-center gap-2">
+      🍙 <span>Menú Japonés</span>
+    </h1>
+    <p class="text-sm text-gray-700">Bienvenido a Fuwa Café</p>
   </header>
 
-  <main class="p-4 max-w-5xl mx-auto">
-    <section id="menu-container" class="grid gap-6"></section>
+  <!-- Contenido -->
+  <main class="p-6 max-w-7xl mx-auto">
+    <div id="menu-container" class="mt-6">
+      <!-- Aquí se inyecta el contenido dinámico desde app.js -->
+    </div>
   </main>
 
-  <footer class="text-center py-4 bg-pink-100 text-sm text-gray-600">
-    © 2025 Fuwa Café
+  <!-- Pie de página -->
+  <footer class="text-center py-6 bg-pink-200 text-sm text-gray-700 mt-10">
+    © 2025 Fuwa Café - Todos los derechos reservados
   </footer>
 
+  <!-- Script -->
   <script src="app.js"></script>
 </body>
 </html>
