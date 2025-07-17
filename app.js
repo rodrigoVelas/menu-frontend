@@ -1,6 +1,6 @@
 async function obtenerMenu() {
   try {
-    const response = await fetch("https://menu-japones-api.onrender.com");
+    const response = await fetch("https://menu-japones-api.onrender.com/api/menu");
     const menu = await response.json();
     renderMenu(menu);
   } catch (error) {
