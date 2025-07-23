@@ -6,7 +6,7 @@ body {
 }
 
 .hero-section {
-  height: 70vh;
+  height: 50vh;
   background-image: url('img/fuwa_inicio.jpeg');
   background-size: cover;
   background-position: center;
