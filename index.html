@@ -2,28 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fuwa Café</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <header>
-    <div class="hero">
-      <div class="overlay">
-        <h1>Bienvenido a Café Fuwa</h1>
-        <p>Disfruta lo mejor de Japón en cada bocado</p>
-      </div>
+  <header class="hero-section">
+    <div class="overlay">
+      <h1 class="titulo-principal">Bienvenido a Fuwa Café</h1>
+      <p class="subtitulo">Disfruta lo mejor de Japón en cada bocado</p>
     </div>
   </header>
 
-  <main>
-    <div id="menu-container" class="menu-container"></div>
-  </main>
+  <div class="buscador-filtrado">
+    <input type="text" id="buscador" placeholder="Buscar producto...">
+    <div class="filtros">
+      <button onclick="filtrarCategoria('todas')">Todas</button>
+      <button onclick="filtrarCategoria('brunch')">Brunch</button>
+      <button onclick="filtrarCategoria('postres')">Postres</button>
+      <button onclick="filtrarCategoria('japanese')">Japonés</button>
+      <button onclick="filtrarCategoria('bebidas')">Bebidas</button>
+    </div>
+  </div>
 
-  <footer>
-    <p>© 2025 Fuwa Café. Diseño inspirado en la cultura japonesa.</p>
-  </footer>
+  <main id="menu-container"></main>
 
   <script src="app.js"></script>
 </body>
