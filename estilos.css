@@ -1,97 +1,45 @@
-body {
-  margin: 0;
-  font-family: 'Noto Sans JP', sans-serif;
-  background-color: #111;
-  color: #fff;
+/* estilos.css */
+
+/* Custom Font Definitions */
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+.font-pacifico {
+    font-family: 'Pacifico', cursive; /* Para el título "Fuwa" */
+}
+.font-dancing-script {
+    font-family: 'Dancing Script', cursive; /* Para títulos de sección */
 }
 
-.hero-section {
-  height: 50vh;
-  background-image: url('img/fuwa_inicio.jpeg');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
+/* Sutiles animaciones para las tarjetas del menú */
+.menu-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-.overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  border-radius: 15px;
+/* Estilos para los botones de filtro */
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; /* Fully rounded */
+    background-color: #f3f4f6; /* Light gray background */
+    color: #4b5563; /* Darker gray text */
+    font-weight: 600; /* Semi-bold */
+    transition: all 0.2s ease-in-out;
+    border: 1px solid transparent;
+    cursor: pointer; /* Indica que es clickeable */
 }
 
-.titulo-principal {
-  font-size: 3rem;
-  font-weight: bold;
+.filter-btn:hover {
+    background-color: #ecf0f1; /* Slightly darker on hover */
+    color: #db2777; /* Pink hover text */
 }
 
-.subtitulo {
-  font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-.buscador-filtrado {
-  text-align: center;
-  padding: 1rem;
-  background: #222;
-}
-
-.buscador-filtrado input {
-  padding: 0.5rem;
-  font-size: 1rem;
-  width: 60%;
-  max-width: 400px;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  border: none;
-}
-
-.filtros button {
-  background-color: #3cb371;
-  border: none;
-  margin: 0 5px;
-  padding: 0.5rem 1rem;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.filtros button:hover {
-  background-color: #2e8b57;
-}
-
-.menu-section {
-  padding: 2rem;
-}
-
-.categoria-titulo {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #ffeb3b;
-  border-bottom: 2px solid #ffeb3b;
-  display: inline-block;
-}
-
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
-}
-
-.card {
-  background: #fff;
-  color: #000;
-  border-radius: 10px;
-  padding: 1rem;
-  width: 260px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
+.filter-btn.active {
+    background-color: #db2777; /* Active pink background */
+    color: #ffffff; /* White text for active */
+    border-color: #be185d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
