@@ -1,4 +1,4 @@
-// app.js (Frontend) - Modificado: Sin imágenes
+// app.js (Frontend) - Con depuración adicional
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuContainer = document.getElementById('menu-items-container');
@@ -12,9 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let allMenuItems = []; // Para almacenar todos los ítems del menú una vez que se cargan
 
-    // Función para renderizar un solo ítem del menú
+    // Función para renderizar un solo ítem del menú (sin imágenes por ahora)
     const renderMenuItem = (item) => {
-        // Manejo de precios variables (ej. Baos, Sandos, Bebidas con diferentes tamaños)
         let priceDisplay = '';
         if (typeof item.price === 'object') {
             priceDisplay = Object.entries(item.price)
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
             priceDisplay = `<span class="block text-xl font-bold text-pink-600">Q${item.price.toFixed(2)}</span>`;
         }
 
-        // --- SE ELIMINA LA PARTE DE LA IMAGEN AQUÍ ---
         return `
             <div class="menu-card bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
                 <div class="p-6">
@@ -41,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     };
 
-    // Función para renderizar el café japonés destacado
+    // Funciones de renderizado (sin cambios significativos)
     const renderJapaneseCoffee = (items) => {
-        japaneseCoffeeSection.innerHTML = ''; // Limpiar antes de renderizar
+        japaneseCoffeeSection.innerHTML = '';
         if (items.length === 0) {
             japaneseCoffeeSection.innerHTML = '<p class="col-span-full text-center text-gray-500">No hay especiales de café japonés por el momento.</p>';
             return;
@@ -53,9 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Función para renderizar los ítems del menú filtrados
     const renderMenuItems = (itemsToRender) => {
-        menuContainer.innerHTML = ''; // Limpiar antes de renderizar
+        menuContainer.innerHTML = '';
         if (itemsToRender.length === 0) {
             menuContainer.innerHTML = '<p class="col-span-full text-center text-gray-500">No se encontraron productos en esta categoría.</p>';
             return;
@@ -65,18 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Función para crear botones de filtro de categoría
     const createCategoryFilters = (categories) => {
-        categoryFiltersContainer.innerHTML = ''; // Limpiar antes de crear
-
-        // Botón "Todo el Menú"
+        categoryFiltersContainer.innerHTML = '';
         const allButton = document.createElement('button');
         allButton.textContent = 'Todo el Menú';
-        allButton.classList.add('filter-btn', 'active'); // Por defecto, "Todo el Menú" está activo
+        allButton.classList.add('filter-btn', 'active');
         allButton.dataset.category = 'All';
         categoryFiltersContainer.appendChild(allButton);
 
-        // Otros botones de categoría
         categories.forEach(category => {
             const button = document.createElement('button');
             button.textContent = category;
@@ -85,12 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
             categoryFiltersContainer.appendChild(button);
         });
 
-        // Añadir event listeners a los botones de filtro
         categoryFiltersContainer.addEventListener('click', (event) => {
             if (event.target.classList.contains('filter-btn')) {
-                // Remover clase 'active' de todos los botones
                 document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                // Añadir clase 'active' al botón clickeado
                 event.target.classList.add('active');
 
                 const selectedCategory = event.target.dataset.category;
@@ -104,47 +94,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Función principal para cargar y mostrar el menú
     const loadMenu = async () => {
         try {
             const response = await fetch(API_URL);
             if (!response.ok) {
-                // Si la respuesta no es OK (ej. 404, 500), lanzamos un error
-                throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
+                const errorText = await response.text(); // Intenta leer el cuerpo del error
+                throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}. Response text: ${errorText}`);
             }
+
             allMenuItems = await response.json();
 
-            // Ocultar mensajes de carga
+            // --- LÍNEA DE DEPURACIÓN CLAVE ---
+            console.log('Datos recibidos de la API:', allMenuItems); //
+            // --- FIN DE LÍNEA DE DEPURACIÓN ---
+
+            // **IMPORTANTE**: Verifica si allMenuItems es un array antes de usar .map() o .filter()
+            if (!Array.isArray(allMenuItems)) {
+                throw new TypeError('La respuesta de la API no es un array. Recibido:', allMenuItems); //
+            }
+
             menuLoading.style.display = 'none';
             japaneseCoffeeLoading.style.display = 'none';
 
-            // Obtener categorías únicas para los filtros, excluyendo 'Japanese' y 'Bebidas' para agruparlas mejor en filtros
-            const categoriesForFilters = ['Brunch', 'Postres', 'Japanese']; // Categorías principales
+            const categoriesForFilters = ['Brunch', 'Postres', 'Japanese'];
             const beverageSubcategories = [...new Set(allMenuItems
                                             .filter(item => item.category === 'Bebidas' && item.subCategory)
                                             .map(item => item.subCategory))];
-            categoriesForFilters.push(...beverageSubcategories.sort()); // Añadir subcategorías de bebidas
+            categoriesForFilters.push(...beverageSubcategories.sort());
 
             createCategoryFilters(categoriesForFilters);
-
-
-            // Renderizar todo el menú por defecto
             renderMenuItems(allMenuItems);
 
-            // Filtrar y renderizar los cafés japoneses destacados
             const japaneseCoffeeItems = allMenuItems.filter(item =>
                 (item.category === 'Bebidas' && item.isJapaneseCoffeeInspired) ||
-                (item.category === 'Japanese' && item.subCategory === null && ['Mochis', 'Baos'].includes(item.name)) // Considera Mochis, Baos aquí si quieres
+                (item.category === 'Japanese' && item.subCategory === null && ['Mochis', 'Baos'].includes(item.name))
             );
             renderJapaneseCoffee(japaneseCoffeeItems);
 
         } catch (error) {
             console.error('Error al cargar el menú:', error);
-            menuContainer.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar el menú. Error: ${error.message}. Por favor, asegúrate de que tu API esté funcionando en ${API_URL} e intenta de nuevo más tarde.</p>`;
-            japaneseCoffeeSection.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: ${error.message}</p>`;
+            menuContainer.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar el menú. Error: ${error.message}. Por favor, asegúrate de que tu API esté funcionando en ${API_URL} e intenta de nuevo más tarde.</p>`; //
+            japaneseCoffeeSection.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: ${error.message}</p>`; //
         }
     };
 
-    // Cargar el menú al iniciar la página
     loadMenu();
 });
