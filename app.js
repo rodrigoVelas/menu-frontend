@@ -1,4 +1,4 @@
-// app.js (Frontend) - Modificado: Sin imágenes y con depuración
+// app.js (Frontend) - Ya debería estar así, pero revisa bien
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuContainer = document.getElementById('menu-items-container');
