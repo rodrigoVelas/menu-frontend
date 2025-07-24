@@ -1,4 +1,4 @@
-// app.js (Frontend) - Con depuración adicional
+// app.js (Frontend) - Modificado: Sin imágenes y con depuración
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuContainer = document.getElementById('menu-items-container');
@@ -98,19 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(API_URL);
             if (!response.ok) {
-                const errorText = await response.text(); // Intenta leer el cuerpo del error
+                const errorText = await response.text();
                 throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}. Response text: ${errorText}`);
             }
 
             allMenuItems = await response.json();
 
             // --- LÍNEA DE DEPURACIÓN CLAVE ---
-            console.log('Datos recibidos de la API:', allMenuItems); //
+            console.log('Datos recibidos de la API:', allMenuItems);
             // --- FIN DE LÍNEA DE DEPURACIÓN ---
 
-            // **IMPORTANTE**: Verifica si allMenuItems es un array antes de usar .map() o .filter()
+            // **IMPORTANTE**: Ahora que el backend devuelve un array plano, esta verificación debería pasar
             if (!Array.isArray(allMenuItems)) {
-                throw new TypeError('La respuesta de la API no es un array. Recibido:', allMenuItems); //
+                throw new TypeError('La respuesta de la API no es un array. Recibido:', allMenuItems);
             }
 
             menuLoading.style.display = 'none';
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error al cargar el menú:', error);
-            menuContainer.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar el menú. Error: ${error.message}. Por favor, asegúrate de que tu API esté funcionando en ${API_URL} e intenta de nuevo más tarde.</p>`; //
-            japaneseCoffeeSection.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: ${error.message}</p>`; //
+            menuContainer.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar el menú. Error: ${error.message}. Por favor, asegúrate de que tu API esté funcionando en ${API_URL} e intenta de nuevo más tarde.</p>`;
+            japaneseCoffeeSection.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: ${error.message}</p>`;
         }
     };
 
