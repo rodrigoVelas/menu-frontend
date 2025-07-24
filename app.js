@@ -1,4 +1,4 @@
-// app.js (Frontend)
+// app.js (Frontend) - Modificado: Sin imágenes
 
 document.addEventListener('DOMContentLoaded', () => {
     const menuContainer = document.getElementById('menu-items-container');
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const japaneseCoffeeLoading = document.getElementById('japanese-coffee-loading');
 
     // ¡IMPORTANTE! Asegúrate de que esta URL sea la de tu API desplegada en Render
-   const API_URL = 'https://menu-japones-api.onrender.com/api/menu';
+    const API_URL = 'https://menu-japones-api.onrender.com/api/menu';
 
     let allMenuItems = []; // Para almacenar todos los ítems del menú una vez que se cargan
 
@@ -24,15 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             priceDisplay = `<span class="block text-xl font-bold text-pink-600">Q${item.price.toFixed(2)}</span>`;
         }
 
-        // Determina la imagen a usar
-        // Si tienes imágenes específicas en tu carpeta img/, úsalas.
-        // Si no, usa una imagen placeholder general o maneja el error.
-        // Aquí estoy usando la ruta especificada en el backend (assets/img/...)
-        const imageSrc = item.imageUrl || 'img/assets/placeholder.jpg'; // Usa un placeholder si no hay imagen definida
-
+        // --- SE ELIMINA LA PARTE DE LA IMAGEN AQUÍ ---
         return `
             <div class="menu-card bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out">
-                <img src="${imageSrc}" alt="${item.name}" class="w-full h-48 object-cover object-center transform hover:scale-110 transition duration-500 ease-in-out">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold text-gray-900 mb-2">${item.name}</h3>
                     <p class="text-gray-700 text-sm mb-4 h-16 overflow-hidden">${item.description}</p>
@@ -115,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(API_URL);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                // Si la respuesta no es OK (ej. 404, 500), lanzamos un error
+                throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
             }
             allMenuItems = await response.json();
 
@@ -124,12 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             japaneseCoffeeLoading.style.display = 'none';
 
             // Obtener categorías únicas para los filtros, excluyendo 'Japanese' y 'Bebidas' para agruparlas mejor en filtros
-            // y añadiendo las subcategorías de bebidas como filtros principales si lo deseas.
-            const rawCategories = allMenuItems.map(item => item.category);
-            const uniqueCategories = [...new Set(rawCategories)].sort(); // Ordenar alfabéticamente
-
-            // Si quieres un control más granular de las categorías mostradas en los filtros principales
-            // Por ejemplo, no mostrar "Bebidas" sino "Bebidas Calientes", "Bebidas Frías", "Frappes"
             const categoriesForFilters = ['Brunch', 'Postres', 'Japanese']; // Categorías principales
             const beverageSubcategories = [...new Set(allMenuItems
                                             .filter(item => item.category === 'Bebidas' && item.subCategory)
@@ -143,17 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
             renderMenuItems(allMenuItems);
 
             // Filtrar y renderizar los cafés japoneses destacados
-            // También incluimos Taro y Matcha de Bebidas Frías si están marcados como isJapaneseCoffeeInspired
             const japaneseCoffeeItems = allMenuItems.filter(item =>
                 (item.category === 'Bebidas' && item.isJapaneseCoffeeInspired) ||
-                (item.category === 'Japanese' && item.subCategory === null) // Considera Mochis, Baos aquí si quieres
+                (item.category === 'Japanese' && item.subCategory === null && ['Mochis', 'Baos'].includes(item.name)) // Considera Mochis, Baos aquí si quieres
             );
             renderJapaneseCoffee(japaneseCoffeeItems);
 
         } catch (error) {
             console.error('Error al cargar el menú:', error);
-            menuContainer.innerHTML = '<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar el menú. Por favor, intenta de nuevo más tarde.</p>';
-            japaneseCoffeeSection.innerHTML = '<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar los especiales de café japonés.</p>';
+            menuContainer.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar el menú. Error: ${error.message}. Por favor, asegúrate de que tu API esté funcionando en ${API_URL} e intenta de nuevo más tarde.</p>`;
+            japaneseCoffeeSection.innerHTML = `<p class="col-span-full text-center text-red-500">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: ${error.message}</p>`;
         }
     };
 
