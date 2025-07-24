@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const japaneseCoffeeLoading = document.getElementById('japanese-coffee-loading');
 
     // ¡IMPORTANTE! Asegúrate de que esta URL sea la de tu API desplegada en Render
-    const API_URL = 'https://menu-japones-api.onrender.com/api/menu';
+   const API_URL = 'https://menu-japones-api.onrender.com/api/menu';
 
     let allMenuItems = []; // Para almacenar todos los ítems del menú una vez que se cargan
 
