@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'japanese-003',
-            name: 'KATSU SANDO',
+            name: 'KATSU SANDO DE CERDO',
             description: 'Sandwich japonés de pan suave con jugoso filete de lomo de cerdo empanizado, acompañado de salsa tonkatsu y pepinillos fuwa de la casa.',
             price: 50.00,
             category: 'Japanese',
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'japanese-004',
-            name: 'SANDO DE POLLO',
+            name: 'KATSU SANDO DE POLLO',
             description: 'Versión del famoso Katsu Sando, con jugoso pollo empanizado en pan suave y nuestra salsa especial.',
             price: 45.00,
             category: 'Japanese',
