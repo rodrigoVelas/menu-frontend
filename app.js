@@ -1,7 +1,8 @@
 // app.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Definición de todo el menú como un array de objetos directamente en el frontend
+    // Definición de todo el menú como un array plano de objetos
+    // Las rutas de las imágenes se han corregido para apuntar directamente a la carpeta 'img/'
     const menu = [
         // --- Brunch ---
         {
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 45.00,
             category: 'Brunch',
             subCategory: null,
-            imageUrl: 'assets/img/brunch-toast.jpg', // Asegúrate de que esta ruta sea correcta
+            imageUrl: 'img/brunch-toast.jpg', // Ruta corregida
             tags: ['dulce', 'frutas', 'saludable']
         },
         {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 40.00,
             category: 'Brunch',
             subCategory: null,
-            imageUrl: 'assets/img/brunch-eggsandwich.jpg',
+            imageUrl: 'img/brunch-eggsandwich.jpg', // Ruta corregida
             tags: ['salado', 'picante', 'completo']
         },
         {
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 45.00,
             category: 'Brunch',
             subCategory: null,
-            imageUrl: 'assets/img/brunch-tostadabrule.jpg',
+            imageUrl: 'img/brunch-tostadabrule.jpg', // Ruta corregida
             tags: ['dulce', 'frutas', 'postre']
         },
         {
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 45.00,
             category: 'Brunch',
             subCategory: null,
-            imageUrl: 'assets/img/brunch-muffinbenedictinos.jpg',
+            imageUrl: 'img/brunch-muffinbenedictinos.jpg', // Ruta corregida
             tags: ['salado', 'clásico', 'completo']
         },
 
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 25.00,
             category: 'Postres',
             subCategory: null,
-            imageUrl: 'assets/img/dessert-crumblcookies.jpg',
+            imageUrl: 'img/dessert-crumblcookies.jpg', // Ruta corregida
             tags: ['galletas', 'dulce', 'variedad']
         },
         {
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 30.00,
             category: 'Postres',
             subCategory: null,
-            imageUrl: 'assets/img/dessert-cheesecakemaracuya.jpg',
+            imageUrl: 'img/dessert-cheesecakemaracuya.jpg', // Ruta corregida
             tags: ['queso', 'frutas', 'cremoso']
         },
         {
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 30.00,
             category: 'Postres',
             subCategory: null,
-            imageUrl: 'assets/img/dessert-pastelchocolate.jpg',
+            imageUrl: 'img/dessert-pastelchocolate.jpg', // Ruta corregida
             tags: ['chocolate', 'clásico', 'indulgencia']
         },
 
@@ -85,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '1': 35.00, '2': 55.00 },
             category: 'Japanese',
             subCategory: null,
-            imageUrl: 'assets/img/japanese-baos.jpg',
+            imageUrl: 'img/japanese-baos.jpg', // Ruta corregida
             tags: ['vapor', 'cerdo', 'vegetariano']
         },
         {
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 18.00,
             category: 'Japanese',
             subCategory: null,
-            imageUrl: 'assets/img/japanese-mochis.jpg',
+            imageUrl: 'img/japanese-mochis.jpg', // Ruta corregida
             tags: ['dulce', 'arroz', 'postre japones']
         },
         {
@@ -105,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 50.00,
             category: 'Japanese',
             subCategory: 'Sando',
-            imageUrl: 'assets/img/japanese-katsusando.jpg',
+            imageUrl: 'img/japanese-katsusando.jpg', // Ruta corregida
             tags: ['sandwich', 'cerdo', 'salado']
         },
         {
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: 45.00,
             category: 'Japanese',
             subCategory: 'Sando',
-            imageUrl: 'assets/img/japanese-sandopollo.jpg',
+            imageUrl: 'img/japanese-sandopollo.jpg', // Ruta corregida
             tags: ['sandwich', 'pollo', 'salado']
         },
         {
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { 'Un Sabor': 38.00, 'Dos Sabores': 43.00 },
             category: 'Japanese',
             subCategory: 'Sando',
-            imageUrl: 'assets/img/japanese-sandosfrutales.jpg',
+            imageUrl: 'img/japanese-sandosfrutales.jpg', // Ruta corregida
             tags: ['sandwich', 'dulce', 'frutas', 'brioche']
         },
 
@@ -137,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 17.00, '12oz': 19.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-americano.jpg',
+            imageUrl: 'img/hotdrink-americano.jpg', // Ruta corregida
             tags: ['cafe', 'clasico'],
             isJapaneseCoffeeInspired: false
         },
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 20.00, '12oz': 22.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-capuchino.jpg',
+            imageUrl: 'img/hotdrink-capuchino.jpg', // Ruta corregida
             tags: ['cafe', 'leche', 'espuma'],
             isJapaneseCoffeeInspired: false
         },
@@ -159,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 18.00, '12oz': 20.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-latte.jpg',
+            imageUrl: 'img/hotdrink-latte.jpg', // Ruta corregida
             tags: ['cafe', 'leche'],
             isJapaneseCoffeeInspired: false
         },
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 22.00, '12oz': 25.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-sakuralatte.jpg',
+            imageUrl: 'img/hotdrink-sakuralatte.jpg', // Ruta corregida
             tags: ['cafe', 'especialidad', 'japones'],
             isJapaneseCoffeeInspired: true
         },
@@ -181,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '6oz': 18.00, '12oz': 21.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-flatwhite.jpg',
+            imageUrl: 'img/hotdrink-flatwhite.jpg', // Ruta corregida
             tags: ['cafe', 'fuerte', 'cremoso'],
             isJapaneseCoffeeInspired: false
         },
@@ -192,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-challatte.jpg',
+            imageUrl: 'img/hotdrink-challatte.jpg', // Ruta corregida
             tags: ['te', 'especias', 'leche'],
             isJapaneseCoffeeInspired: false
         },
@@ -203,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 30.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-dirtychai.jpg',
+            imageUrl: 'img/hotdrink-dirtychai.jpg', // Ruta corregida
             tags: ['cafe', 'te', 'especias'],
             isJapaneseCoffeeInspired: false
         },
@@ -214,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 23.00, '12oz': 27.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-dulcepecado.jpg',
+            imageUrl: 'img/hotdrink-dulcepecado.jpg', // Ruta corregida
             tags: ['dulce', 'leche'],
             isJapaneseCoffeeInspired: false
         },
@@ -225,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 25.00, '12oz': 28.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-moca.jpg',
+            imageUrl: 'img/hotdrink-moca.jpg', // Ruta corregida
             tags: ['cafe', 'chocolate', 'leche'],
             isJapaneseCoffeeInspired: false
         },
@@ -236,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 25.00, '12oz': 28.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-whitemoca.jpg',
+            imageUrl: 'img/hotdrink-whitemoca.jpg', // Ruta corregida
             tags: ['cafe', 'chocolate blanco', 'leche'],
             isJapaneseCoffeeInspired: false
         },
@@ -247,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '8oz': 22.00, '12oz': 25.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-chocolate.jpg',
+            imageUrl: 'img/hotdrink-chocolate.jpg', // Ruta corregida
             tags: ['chocolate', 'clasico'],
             isJapaneseCoffeeInspired: false
         },
@@ -258,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 33.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-taro.jpg',
+            imageUrl: 'img/hotdrink-taro.jpg', // Ruta corregida
             tags: ['taro', 'asiatico', 'leche'],
             isJapaneseCoffeeInspired: true
         },
@@ -269,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 33.00 },
             category: 'Bebidas',
             subCategory: 'Calientes',
-            imageUrl: 'assets/img/hotdrink-matcha.jpg',
+            imageUrl: 'img/hotdrink-matcha.jpg', // Ruta corregida
             tags: ['matcha', 'te japones', 'saludable'],
             isJapaneseCoffeeInspired: true
         },
@@ -282,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 18.00, '16oz': 22.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-icedlatte.jpg',
+            imageUrl: 'img/colddrink-icedlatte.jpg', // Ruta corregida
             tags: ['cafe', 'frio', 'leche']
         },
         {
@@ -292,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-caramelmacchiato.jpg',
+            imageUrl: 'img/colddrink-caramelmacchiato.jpg', // Ruta corregida
             tags: ['cafe', 'caramelo', 'frio']
         },
         {
@@ -302,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 30.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-icedtaro.jpg',
+            imageUrl: 'img/colddrink-icedtaro.jpg', // Ruta corregida
             tags: ['taro', 'asiatico', 'frio']
         },
         {
@@ -312,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 30.00, '16oz': 33.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-icedmatcha.jpg',
+            imageUrl: 'img/colddrink-icedmatcha.jpg', // Ruta corregida
             tags: ['matcha', 'te japones', 'frio']
         },
         {
@@ -322,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 30.00, '16oz': 33.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-cotaro.jpg',
+            imageUrl: 'img/colddrink-cotaro.jpg', // Ruta corregida
             tags: ['coco', 'taro', 'exotico']
         },
         {
@@ -332,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 32.00, '16oz': 35.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-sakurasrefresher.jpg',
+            imageUrl: 'img/colddrink-sakurasrefresher.jpg', // Ruta corregida
             tags: ['rosas', 'frutos rojos', 'refrescante']
         },
         {
@@ -342,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-dragonfruit.jpg',
+            imageUrl: 'img/colddrink-dragonfruit.jpg', // Ruta corregida
             tags: ['pitahaya', 'tropical', 'frutas']
         },
         {
@@ -352,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-melonfubuki.jpg',
+            imageUrl: 'img/colddrink-melonfubuki.jpg', // Ruta corregida
             tags: ['melon', 'frutas', 'refrescante']
         },
         {
@@ -362,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-hikarilemon.jpg',
+            imageUrl: 'img/colddrink-hikarilemon.jpg', // Ruta corregida
             tags: ['limonada', 'jengibre', 'picante']
         },
         {
@@ -372,7 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 30.00, '16oz': 35.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-finspinner.jpg',
+            imageUrl: 'img/colddrink-finspinner.jpg', // Ruta corregida
             tags: ['chocolate', 'cafe', 'crema', 'japones']
         },
         {
@@ -382,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 30.00, '16oz': 35.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-kohichoko.jpg',
+            imageUrl: 'img/colddrink-kohichoko.jpg', // Ruta corregida
             tags: ['chocolate', 'cafe', 'frio']
         },
         {
@@ -392,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 33.00, '16oz': 38.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'assets/img/colddrink-chigokohi.jpg',
+            imageUrl: 'img/colddrink-chigokohi.jpg', // Ruta corregida
             tags: ['leche', 'fresas', 'crema', 'japones']
         },
         {
@@ -402,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 33.00, '16oz': 38.00 },
             category: 'Bebidas',
             subCategory: 'Frias',
-            imageUrl: 'img/pinky_matcha.png', // Usando la imagen local que tienes
+            imageUrl: 'img/pinky_matcha.png', // Ruta corregida (esta ya la tenías así)
             tags: ['matcha', 'fresas', 'crema', 'japones']
         },
 
@@ -414,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
             subCategory: 'Frappes',
-            imageUrl: 'assets/img/frappe-caramelmacchiato.jpg',
+            imageUrl: 'img/frappe-caramelmacchiato.jpg', // Ruta corregida
             tags: ['frappe', 'caramelo', 'cafe']
         },
         {
@@ -424,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
             subCategory: 'Frappes',
-            imageUrl: 'assets/img/frappe-taro.jpg',
+            imageUrl: 'img/frappe-taro.jpg', // Ruta corregida
             tags: ['frappe', 'taro', 'cremoso']
         },
         {
@@ -434,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: { '12oz': 28.00, '16oz': 35.00 },
             category: 'Bebidas',
             subCategory: 'Frappes',
-            imageUrl: 'assets/img/frappe-moca.jpg',
+            imageUrl: 'img/frappe-moca.jpg', // Ruta corregida
             tags: ['frappe', 'chocolate', 'cafe']
         },
     ];
@@ -452,21 +453,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof item.price === 'object') {
             // Si el precio es un objeto (ej. { '8oz': 17.00, '12oz': 19.00 })
             priceHtml = Object.entries(item.price)
-                .map(([size, price]) => `<p class="item-price">${size}: Q${price.toFixed(2)}</p>`)
+                .map(([size, price]) => `<p class="menu-item-price">${size}: Q${price.toFixed(2)}</p>`)
                 .join('');
         } else {
             // Si el precio es un número (ej. 45.00)
-            priceHtml = `<p class="item-price">Q${item.price.toFixed(2)}</p>`;
+            priceHtml = `<p class="menu-item-price">Q${item.price.toFixed(2)}</p>`;
         }
 
+        // Usando las clases CSS que probablemente ya tienes en estilos.css
+        // Si estas clases no funcionan, deberemos revisar tu estilos.css
         return `
-            <div class="menu-item-card">
-                <img src="${item.imageUrl.startsWith('assets/img/') ? item.imageUrl : 'img/' + item.imageUrl.split('/').pop()}" alt="${item.name}" class="item-image">
-                <h4 class="item-name">${item.name}</h4>
-                <p class="item-description">${item.description}</p>
-                ${priceHtml}
-                <div class="item-tags">
-                    ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            <div class="menu-card">
+                <img src="${item.imageUrl}" alt="${item.name}" class="menu-card-image">
+                <div class="menu-card-content">
+                    <h4 class="menu-card-name">${item.name}</h4>
+                    <p class="menu-card-description">${item.description}</p>
+                    ${priceHtml}
+                    <div class="menu-card-tags">
+                        ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
                 </div>
             </div>
         `;
@@ -504,31 +509,9 @@ document.addEventListener('DOMContentLoaded', () => {
     japaneseCoffeeContainer.appendChild(japaneseCoffeeGrid);
 
     // Lógica para filtros (opcional, si quieres mantenerlos)
-    // Obtener todas las categorías únicas del menú
-    const allCategories = [...new Set(menu.map(item => item.category))];
-    const categoriesForFilters = [];
-
     // Ocultar la sección de filtros si no quieres implementarla por ahora
     const categoryFiltersContainer = document.getElementById('category-filters');
     const subcategoryFiltersContainer = document.getElementById('subcategory-filters');
     if (categoryFiltersContainer) categoryFiltersContainer.style.display = 'none';
     if (subcategoryFiltersContainer) subcategoryFiltersContainer.style.display = 'none';
-
-
-    // // Ejemplo básico de cómo podrías hacer los filtros si decides implementarlos
-    // function createCategoryFilters(categories) {
-    //     const filterContainer = document.getElementById('category-filters');
-    //     filterContainer.innerHTML = '';
-    //     categories.forEach(category => {
-    //         const button = document.createElement('button');
-    //         button.textContent = category;
-    //         button.classList.add('filter-button');
-    //         button.addEventListener('click', () => {
-    //             const filteredItems = menu.filter(item => item.category === category);
-    //             renderMenu(filteredItems, menuContainer);
-    //         });
-    //         filterContainer.appendChild(button);
-    //     });
-    // }
-    // createCategoryFilters(allCategories);
 });
