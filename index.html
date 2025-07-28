@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuwa Menú</title>
-    <link rel="stylesheet" href="estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilos.css"> <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -26,24 +25,20 @@
             </div>
         </section>
 
+        <section class="location-info">
+            <p>Colonia Alvarado Zona 5, Antiguas instalaciones del colegio Royal</p>
+        </section>
+
         <section class="specialties">
             <h3>Nuestras Especialidades de Café Japonés</h3>
             <p>Sumérgete en la cultura del café con un toque de Japón. Descubre nuestros lattes inspirados en Sakura, el auténtico Matcha ceremonial y refrescantes infusiones de Taro.</p>
-            <p id="japaneseCoffeeError" class="error-message" style="display: none;">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: La respuesta de la API no es un array. Recibido: </p>
+            <div id="japanese-coffee-container" class="menu-grid"></div>
         </section>
 
         <section class="menu-full">
             <h3>Explora el Menú Completo</h3>
-            <p id="fullMenuError" class="error-message" style="display: none;">Lo sentimos, no pudimos cargar el menú. Error: La respuesta de la API no es un array. Recibido:</p>
-
             <div id="menu-container" class="menu-grid">
                 </div>
-
-            <div class="filters-container">
-                <div id="category-filters" class="filters"></div>
-                <div id="subcategory-filters" class="filters"></div>
-            </div>
-
         </section>
     </main>
 
@@ -51,6 +46,5 @@
         <p>© 2025 Fuwa. Todos los derechos reservados. Hecho con ❤️ para ti.</p>
     </footer>
 
-    <script src="app.js"></script>
-</body>
+    <script src="app.js"></script> </body>
 </html>
