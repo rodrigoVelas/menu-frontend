@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'drink-hot-006',
-            name: 'CHALLATTE',
+            name: 'CHAI LATTE',
             description: 'Bebida aromática de té negro especiado con leche y un toque de vainilla. Ideal para un momento de relax.',
             price: { '12oz': 28.00 },
             category: 'Bebidas',
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'drink-hot-009',
-            name: 'MOCA',
+            name: 'MOCCA',
             description: 'La combinación perfecta de espresso, chocolate y leche vaporizada, coronado con crema batida.',
             price: { '8oz': 25.00, '12oz': 28.00 },
             category: 'Bebidas',
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             id: 'drink-cold-002',
-            name: 'CARAMEL MACCHIATO HELADO',
+            name: 'CARAMEL MACCHIATO FRIO',
             description: 'Espresso sobre leche fría, con un toque de vainilla y bañado en sirope de caramelo. Dulce y energizante.',
             price: { '12oz': 28.00, '16oz': 32.00 },
             category: 'Bebidas',
