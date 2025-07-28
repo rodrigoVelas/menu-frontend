@@ -1,45 +1,237 @@
 /* estilos.css */
 
-/* Custom Font Definitions */
-.font-inter {
-    font-family: 'Inter', sans-serif;
-}
-.font-pacifico {
-    font-family: 'Pacifico', cursive; /* Para el título "Fuwa" */
-}
-.font-dancing-script {
-    font-family: 'Dancing Script', cursive; /* Para títulos de sección */
+/* Fuentes - Asegúrate de que los nombres de las fuentes coincidan con los de Google Fonts */
+body {
+    font-family: 'Playfair Display', serif; /* Fuente principal para el cuerpo */
+    margin: 0;
+    padding: 0;
+    background-color: #f8f0e5; /* Color de fondo claro */
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Sutiles animaciones para las tarjetas del menú */
+h1, h2, h3, h4 {
+    font-family: 'Dancing Script', cursive; /* Fuente para títulos */
+    color: #e57373; /* Un tono rosado/rojo para los títulos */
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center; /* Centrar logo y título */
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre imagen y título */
+}
+
+.logo img {
+    height: 60px; /* Tamaño del logo */
+    width: auto;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #e57373;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 2em;
+}
+
+.hero-image {
+    width: 100%;
+    height: 400px; /* Altura fija para la imagen del hero */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    filter: brightness(0.7); /* Oscurece un poco la imagen para que el texto resalte */
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background-color: rgba(0,0,0,0.5); /* Fondo semitransparente para el texto */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-text h2 {
+    color: #fff;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    color: #eee;
+    font-size: 1.1em;
+}
+
+/* Location Info */
+.location-info {
+    text-align: center;
+    margin-bottom: 2em;
+    font-style: italic;
+    color: #555;
+    font-size: 1.1em;
+}
+
+/* Secciones de Contenido (Specialties, Menu Completo) */
+.specialties, .menu-full {
+    padding: 20px;
+    margin: 0 auto 30px auto;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.specialties h3, .menu-full h3 {
+    font-size: 2em;
+    margin-top: 0;
+}
+
+.specialties p, .menu-full p {
+    text-align: center;
+    margin-bottom: 1.5em;
+    color: #666;
+}
+
+/* Grid para el menú y especialidades */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 25px; /* Espacio entre las tarjetas */
+    padding: 20px;
+}
+
+/* Estilos de la tarjeta de menú */
 .menu-card {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden; /* Asegura que el contenido no se salga */
+    display: flex;
+    flex-direction: column; /* Apila contenido verticalmente */
+    transition: transform 0.2s ease-in-out;
 }
+
 .menu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Pequeño efecto al pasar el ratón */
 }
 
-/* Estilos para los botones de filtro */
-.filter-btn {
-    padding: 0.5rem 1rem;
-    border-radius: 9999px; /* Fully rounded */
-    background-color: #f3f4f6; /* Light gray background */
-    color: #4b5563; /* Darker gray text */
-    font-weight: 600; /* Semi-bold */
-    transition: all 0.2s ease-in-out;
-    border: 1px solid transparent;
-    cursor: pointer; /* Indica que es clickeable */
+/* Imagen de la tarjeta - OCULTA POR AHORA */
+.menu-card-image {
+    /* display: none; */ /* Descomenta esta línea para ocultar las imágenes */
+    width: 100%;
+    height: 200px; /* Altura fija para las imágenes de las tarjetas */
+    object-fit: cover; /* Recorta la imagen para que quepa */
+    border-bottom: 1px solid #eee;
 }
 
-.filter-btn:hover {
-    background-color: #ecf0f1; /* Slightly darker on hover */
-    color: #db2777; /* Pink hover text */
+.menu-card-content {
+    padding: 15px;
+    flex-grow: 1; /* Hace que el contenido se expanda y ocupe el espacio disponible */
+    display: flex;
+    flex-direction: column;
 }
 
-.filter-btn.active {
-    background-color: #db2777; /* Active pink background */
-    color: #ffffff; /* White text for active */
-    border-color: #be185d;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.menu-card-name {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #e57373; /* Color de título de ítem */
+    text-align: left; /* Alineación del nombre dentro de la tarjeta */
+}
+
+.menu-card-description {
+    font-size: 0.9em;
+    color: #555;
+    flex-grow: 1; /* Permite que la descripción ocupe espacio si es larga */
+    margin-bottom: 10px;
+    text-align: left; /* Alineación de la descripción */
+}
+
+.menu-item-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #8bc34a; /* Un color verde para el precio */
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: right; /* Alineación del precio */
+}
+
+.menu-card-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap; /* Permite que las etiquetas se envuelvan en varias líneas */
+    gap: 5px;
+}
+
+.tag {
+    background-color: #ffe0b2; /* Color de fondo para las etiquetas */
+    color: #ff9800; /* Color de texto para las etiquetas */
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap; /* Evita que el texto de la etiqueta se rompa */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #333;
+    color: #f8f0e5;
+    font-size: 0.9em;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .hero-text h2 {
+        font-size: 1.8em;
+    }
+    .hero-text p {
+        font-size: 1em;
+    }
+    .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 2em;
+    }
+    .hero-image {
+        height: 250px;
+    }
+    .hero-text {
+        width: 90%;
+        padding: 15px;
+    }
+    .hero-text h2 {
+        font-size: 1.5em;
+    }
+    .hero-text p {
+        font-size: 0.9em;
+    }
+    .menu-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
 }
