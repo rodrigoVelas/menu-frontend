@@ -3,51 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Fuwa - Explora Nuestros Sabores</title>
-    <link rel="stylesheet" href="estilos.css"> <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Pacifico&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <title>Fuwa Menú</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 font-inter text-gray-800 antialiased">
-
-    <header class="bg-white shadow-sm py-6 sticky top-0 z-50">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-            <h1 class="text-5xl font-pacifico text-pink-500 mb-4 md:mb-0">Fuwa</h1>
-            <nav class="space-x-4">
-                </nav>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/fuwa_foto.png" alt="Fuwa Logo">
+            <h1>Fuwa</h1>
         </div>
+        <nav>
+            </nav>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
-        <section class="mb-10 text-center">
-            <img src="img/fuwa_inicio.jpeg" alt="Bienvenida a Fuwa" class="w-full max-h-96 object-cover object-center rounded-lg shadow-lg mb-6">
-            <h2 class="text-4xl font-dancing-script text-pink-600 mb-4">Bienvenidos a Fuwa, donde el sabor se encuentra con la tradición japonesa.</h2>
-            <p class="text-lg text-gray-700 max-w-3xl mx-auto">Explora nuestro exclusivo menú, desde deliciosos brunches hasta auténticas especialidades japonesas y una inigualable selección de café con un toque oriental. ¡Prepárate para una experiencia única!</p>
-        </section>
-
-        <section class="mb-10">
-            <h2 class="text-4xl font-dancing-script text-pink-600 mb-6 text-center">Nuestras Especialidades de Café Japonés</h2>
-            <p class="text-center text-lg text-gray-700 max-w-2xl mx-auto mb-8">
-                Sumérgete en la cultura del café con un toque de Japón. Descubre nuestros lattes inspirados en Sakura, el auténtico Matcha ceremonial y refrescantes infusiones de Taro.
-            </p>
-            <div id="japanese-coffee-section" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="col-span-full text-center text-gray-500 py-10" id="japanese-coffee-loading">Cargando delicias japonesas...</div>
+    <main>
+        <section class="hero">
+            <img src="img/fuwa_inicio.jpeg" alt="Bienvenida a Fuwa" class="hero-image">
+            <div class="hero-text">
+                <h2>Bienvenidos a Fuwa, donde el sabor se encuentra con la tradición japonesa.</h2>
+                <p>Explora nuestro exclusivo menú, desde deliciosos brunches hasta auténticas especialidades japonesas y una inigualable selección de café con un toque oriental. ¡Prepárate para una experiencia única!</p>
             </div>
         </section>
 
-        <section>
-            <h2 class="text-4xl font-dancing-script text-purple-600 mb-8 text-center">Explora el Menú Completo</h2>
-            <div class="flex flex-wrap justify-center gap-3 mb-8" id="category-filters">
+        <section class="specialties">
+            <h3>Nuestras Especialidades de Café Japonés</h3>
+            <p>Sumérgete en la cultura del café con un toque de Japón. Descubre nuestros lattes inspirados en Sakura, el auténtico Matcha ceremonial y refrescantes infusiones de Taro.</p>
+            <p id="japaneseCoffeeError" class="error-message" style="display: none;">Lo sentimos, no pudimos cargar los especiales de café japonés. Error: La respuesta de la API no es un array. Recibido: </p>
+        </section>
+
+        <section class="menu-full">
+            <h3>Explora el Menú Completo</h3>
+            <p id="fullMenuError" class="error-message" style="display: none;">Lo sentimos, no pudimos cargar el menú. Error: La respuesta de la API no es un array. Recibido:</p>
+
+            <div id="menu-container" class="menu-grid">
                 </div>
-            <div id="menu-items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="col-span-full text-center text-gray-500 py-10" id="menu-loading">Cargando menú delicioso...</div>
+
+            <div class="filters-container">
+                <div id="category-filters" class="filters"></div>
+                <div id="subcategory-filters" class="filters"></div>
             </div>
+
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white text-center py-6 mt-10">
-        <p>&copy; 2025 Fuwa. Todos los derechos reservados. Hecho con ❤️ para ti.</p>
+    <footer>
+        <p>© 2025 Fuwa. Todos los derechos reservados. Hecho con ❤️ para ti.</p>
     </footer>
 
     <script src="app.js"></script>
